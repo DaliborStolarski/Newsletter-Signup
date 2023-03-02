@@ -1,10 +1,8 @@
-import { apiKey, idList } from "./config.js";
-
 // requiring modules
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
+const { apiKey, idList } = require("./config.js");
 
 // init constant app
 const app = express();
@@ -24,7 +22,7 @@ app.get("/", function (req, res) {
 mailchimp.setConfig({
   // apiKey and server
   apiKey: apiKey,
-  server: idList,
+  server: "us13",
 });
 
 //As soon as the sign in button is pressed execute this (based on HTML data)
@@ -32,6 +30,7 @@ app.post("/", function (req, res) {
   var firstName = req.body.fName;
   var lastName = req.body.lName;
   var email = req.body.email;
+  // const idList = idList;
 
   //Creating an object with the users data
   const subscribingUser = {
@@ -63,13 +62,7 @@ app.post("/", function (req, res) {
   console.log(`Error occurred!`);
 });
 
-// port for HEROKU and local 3000 listener
+// port 3000 listener
 app.listen(process.env.PORT || 3000, function () {
   console.log("server is running on port 3000, Newsletter-Signup project");
 });
-
-// API key
-// 4f0d237de7cabab14e770a2624ff79e5-us13
-
-// List ID
-// 4ca79d5234
