@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 const { apiKey, idList } = require("./config");
+const request = require("request");
 
 // init constant app
 const app = express();
